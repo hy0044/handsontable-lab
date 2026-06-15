@@ -5,11 +5,8 @@ import { registerAllModules } from 'handsontable/registry';
 // register Handsontable's modules
 registerAllModules();
 
-type Props = {
-  themeName?: string;
-};
 
-export function FilterRestore({ themeName }: Props) {
+export function FilterRestore() {
   const hotRef = useRef<HotTableClass>(null);
 
   const applyFilter = () => {
@@ -39,7 +36,7 @@ export function FilterRestore({ themeName }: Props) {
         width="auto"
         height="auto"
         licenseKey="non-commercial-and-evaluation"
-        themeName={themeName}
+        themeName="ht-theme-main"
       />
     </>
   );
