@@ -1,5 +1,5 @@
 import { FilterRestore } from '@lab/shared';
 
 export default function App() {
-  return <FilterRestore />;
+  return <FilterRestore themeName="ht-theme-main" />;
 }

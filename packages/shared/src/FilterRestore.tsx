@@ -1,7 +1,15 @@
 import { HotTable, HotTableClass } from '@handsontable/react';
 import { useRef } from 'react';
+import { registerAllModules } from 'handsontable/registry';
 
-export function FilterRestore() {
+// register Handsontable's modules
+registerAllModules();
+
+type Props = {
+  themeName?: string;
+};
+
+export function FilterRestore({ themeName }: Props) {
   const hotRef = useRef<HotTableClass>(null);
 
   const applyFilter = () => {
@@ -31,6 +39,7 @@ export function FilterRestore() {
         width="auto"
         height="auto"
         licenseKey="non-commercial-and-evaluation"
+        themeName={themeName}
       />
     </>
   );
