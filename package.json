@@ -1,0 +1,20 @@
+{
+  "name": "handsontable-lab",
+  "private": true,
+  "scripts": {
+    "dev:15": "pnpm --filter hot15 dev",
+    "dev:16": "pnpm --filter hot16 dev",
+    "build": "pnpm -r build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.7"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "core-js",
+      "esbuild"
+    ]
+  }
+}
