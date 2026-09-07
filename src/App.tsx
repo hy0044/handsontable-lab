@@ -7,7 +7,7 @@ import 'handsontable/styles/ht-theme-main.css';
 registerAllModules();
 
 const initialData = [['A'], ['B'], ['C'], ['D'], ['E']];
-const updatedData = [['A'], ['B'], ['F'], ['G'], ['H']];
+const updatedData = [['F'], ['G'], ['H']];
 
 export default function App() {
   const hotRef = useRef<HotTableRef>(null);
