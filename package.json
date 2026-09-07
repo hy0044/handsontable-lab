@@ -1,20 +1,24 @@
 {
-  "name": "handsontable-lab",
+  "name": "handsontable-v18-filter-repro",
   "private": true,
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev:15": "pnpm --filter hot15 dev",
-    "dev:16": "pnpm --filter hot16 dev",
-    "build": "pnpm -r build"
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@handsontable/react-wrapper": "18.1.0",
+    "handsontable": "18.1.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
     "typescript": "^5.9.3",
     "vite": "^7.2.7"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "core-js",
-      "esbuild"
-    ]
   }
 }

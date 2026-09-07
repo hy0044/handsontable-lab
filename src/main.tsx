@@ -1,9 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import 'handsontable/styles/handsontable.css';
-import 'handsontable/styles/ht-theme-main.css';
-import './style.css';
 import App from './App';
+import './style.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
