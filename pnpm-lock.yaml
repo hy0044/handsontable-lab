@@ -7,88 +7,35 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@handsontable/react-wrapper':
+        specifier: 18.1.0
+        version: 18.1.0(handsontable@18.1.0)
+      handsontable:
+        specifier: 18.1.0
+        version: 18.1.0
+      react:
+        specifier: 19.2.7
+        version: 19.2.7
+      react-dom:
+        specifier: 19.2.7
+        version: 19.2.7(react@19.2.7)
     devDependencies:
+      '@types/react':
+        specifier: 19.2.17
+        version: 19.2.17
+      '@types/react-dom':
+        specifier: 19.2.3
+        version: 19.2.3(@types/react@19.2.17)
       '@vitejs/plugin-react':
-        specifier: ^5.1.1
+        specifier: 5.2.0
         version: 5.2.0(vite@7.3.5)
       typescript:
-        specifier: ^5.9.3
+        specifier: 5.9.3
         version: 5.9.3
       vite:
-        specifier: ^7.2.7
+        specifier: 7.3.5
         version: 7.3.5
-
-  packages/hot15:
-    dependencies:
-      '@handsontable/react':
-        specifier: 15.2.0
-        version: 15.2.0(handsontable@15.2.0)
-      '@lab/shared':
-        specifier: workspace:*
-        version: link:../shared
-      handsontable:
-        specifier: 15.2.0
-        version: 15.2.0
-      react:
-        specifier: ^19.2.3
-        version: 19.2.7
-      react-dom:
-        specifier: ^19.2.3
-        version: 19.2.7(react@19.2.7)
-    devDependencies:
-      '@types/react':
-        specifier: ^19.2.7
-        version: 19.2.17
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.17)
-
-  packages/hot16:
-    dependencies:
-      '@handsontable/react':
-        specifier: 16.2.0
-        version: 16.2.0(handsontable@16.2.0)
-      '@lab/shared':
-        specifier: workspace:*
-        version: link:../shared
-      handsontable:
-        specifier: 16.2.0
-        version: 16.2.0
-      react:
-        specifier: ^19.2.3
-        version: 19.2.7
-      react-dom:
-        specifier: ^19.2.3
-        version: 19.2.7(react@19.2.7)
-    devDependencies:
-      '@types/react':
-        specifier: ^19.2.7
-        version: 19.2.17
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.17)
-
-  packages/shared:
-    dependencies:
-      '@handsontable/react':
-        specifier: '>=15'
-        version: 16.2.0(handsontable@16.2.0)
-      handsontable:
-        specifier: '>=15'
-        version: 16.2.0
-    devDependencies:
-      '@types/react':
-        specifier: ^19.2.7
-        version: 19.2.17
-      '@types/react-dom':
-        specifier: ^19.2.3
-        version: 19.2.3(@types/react@19.2.17)
-      react:
-        specifier: ^19.2.3
-        version: 19.2.7
-      react-dom:
-        specifier: ^19.2.3
-        version: 19.2.7(react@19.2.7)
 
 packages:
 
@@ -331,20 +278,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@handsontable/pikaday@1.0.0':
-    resolution: {integrity: sha512-1VN6N38t5/DcjJ7y7XUYrDx1LuzvvzlrFdBdMG90Qo1xc8+LXHqbWbsTEm5Ec5gXTEbDEO53vUT35R+2COmOyg==}
-
-  '@handsontable/react@15.2.0':
-    resolution: {integrity: sha512-nADgytviLWHJ/EGcRRWV5s3GmjE5eoMoaAMeqT2LGuTOBr8Bz1+25G9Cbqz7i6x2zqUgLPTfRQBLbiLAcPRlBw==}
-    deprecated: Handsontable for React is now available as @handsontable/react-wrapper.
+  '@handsontable/react-wrapper@18.1.0':
+    resolution: {integrity: sha512-yCwjgroeP9vYE76ZjjtM/I2fHb6m0L1jYbWUHnbx7jP4PgBBI65DynaH1ou0Mm+bPojrJWcRU4zM2B4M7gOeFQ==}
     peerDependencies:
-      handsontable: '>=15.0.0'
-
-  '@handsontable/react@16.2.0':
-    resolution: {integrity: sha512-7HMjiBQu0Hb6SixAKakV9HBa/pn22JbskiiTRbIRaYIJJyiogzltXrNt8cXVEt2MSViaeLm0exvxpFYcMyrnZA==}
-    deprecated: Handsontable for React is now available as @handsontable/react-wrapper.
-    peerDependencies:
-      handsontable: '>=16.0.0'
+      handsontable: ^18.0.0
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -526,9 +463,6 @@ packages:
   '@types/react@19.2.17':
     resolution: {integrity: sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==}
 
-  '@types/trusted-types@2.0.7':
-    resolution: {integrity: sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw==}
-
   '@vitejs/plugin-react@5.2.0':
     resolution: {integrity: sha512-YmKkfhOAi3wsB1PhJq5Scj3GXMn3WvtQ/JC0xoopuHoXSdmtdStOpFrYaT1kie2YgFBcIe64ROzMYRjCrYOdYw==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -540,9 +474,6 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  bignumber.js@9.3.1:
-    resolution: {integrity: sha512-Ko0uX15oIUS7wJ3Rb30Fs6SkVbLmPBAKdlm7q9+ak9bbIeFf0MwuBsQV6z7+X768/cHsfg+WlysDWJcmthjsjQ==}
-
   browserslist@4.28.2:
     resolution: {integrity: sha512-48xSriZYYg+8qXna9kwqjIVzuQxi+KYWp2+5nCYnYKPTr0LvD89Jqk2Or5ogxz0NUMfIjhh2lIUX/LyX9B4oIg==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
@@ -551,14 +482,8 @@ packages:
   caniuse-lite@1.0.30001799:
     resolution: {integrity: sha512-hG1bReV+OUU+MOqK4t/ZWI0tZOyz3rqS9XuhOUz1cIcbwBKjOyJEJuw9ER5JuNyqxNk8u/JUVbGibBOL1yrjFw==}
 
-  chevrotain@6.5.0:
-    resolution: {integrity: sha512-BwqQ/AgmKJ8jcMEjaSnfMybnKMgGTrtDKowfTP3pX4jwVy0kNjRsT/AP6h+wC3+3NC+X8X15VWBnTCQlX+wQFg==}
-
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
-
-  core-js@3.49.0:
-    resolution: {integrity: sha512-es1U2+YTtzpwkxVLwAFdSpaIMyQaq0PBgm3YD1W3Qpsn1NAmO3KSgZfu+oGSWVu6NvLHoHCV/aYcsE5wiB7ALg==}
 
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
@@ -571,9 +496,6 @@ packages:
     peerDependenciesMeta:
       supports-color:
         optional: true
-
-  dompurify@3.4.10:
-    resolution: {integrity: sha512-0xzNv0e7oYC6yyuOGZIABPM4qtg3QxLFniDNPP4ZP90wR8Yq3zgwpRbrNiT4N3IKqDbbYFEJLV+JWEs19aZ//w==}
 
   electron-to-chromium@1.5.372:
     resolution: {integrity: sha512-M3yhbAlilnwqC8D21t28UCDGHyitShTmmLRU/H+b74P6Ski16Nb9HONYEaVpMj/pwC7BEo5B95FpjODLCWbtfA==}
@@ -605,14 +527,8 @@ packages:
     resolution: {integrity: sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==}
     engines: {node: '>=6.9.0'}
 
-  handsontable@15.2.0:
-    resolution: {integrity: sha512-QccHZkowqciFgyUyG/BUidatHpDkkUgx1O6v6czpU/ZgT3blmEpNFhErblC/JsWb6uVxbDfgW2vpW5eQNsU8GA==}
-
-  handsontable@16.2.0:
-    resolution: {integrity: sha512-4zhMQON9DPyip/6YIPH2G7jN+QEJ0uabCZruhrhOqTqr3Qf/FDjsTInUaEzMCmhhdii5MbA6PGyLfUad6t1sXA==}
-
-  hyperformula@3.3.0:
-    resolution: {integrity: sha512-Mkc7AxP9WQDM4xHo1/XpAwzcpMLkwMand4HO9rfRzP502TBzoR1Z96zoCzRrwXodLSVyh+MD7FvzRVALDxmRFQ==}
+  handsontable@18.1.0:
+    resolution: {integrity: sha512-23S/Jny67NRevaZgTXSAonhFW28du3J6DJm/TDN35Gj5hpztUxlRMEG0SugEEf0lQxdDhLRmz81Ikkt7xvuNRA==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -630,9 +546,6 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  moment@2.30.1:
-    resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
-
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
@@ -644,9 +557,6 @@ packages:
   node-releases@2.0.47:
     resolution: {integrity: sha512-Uzmd6LXpouKo8EUK68IjH4+E01w/hXyV3R3g/geCJo+rXLNfh1xucB+LOzYEOQPSiUK3h/xZf0cQGcSsmyL2Og==}
     engines: {node: '>=18'}
-
-  numbro@2.5.0:
-    resolution: {integrity: sha512-xDcctDimhzko/e+y+Q2/8i3qNC9Svw1QgOkSkQoO0kIPI473tR9QRbo2KP88Ty9p8WbPy+3OpTaAIzehtuHq+A==}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -672,9 +582,6 @@ packages:
     resolution: {integrity: sha512-HNe9WslTbXmFK8o8cmwgAeJFSBvt1bPdHCVKtaaV+WlAN36mpT4hcRpwbf3fY56ar2oIXzsBpOAiIRHAdY0OlQ==}
     engines: {node: '>=0.10.0'}
 
-  regexp-to-ast@0.4.0:
-    resolution: {integrity: sha512-4qf/7IsIKfSNHQXSwial1IFmfM1Cc/whNBQqRwe0V2stPe7KmN1U0tWQiIx6JiirgSrisjE0eECdNf7Tav1Ntw==}
-
   rollup@4.62.0:
     resolution: {integrity: sha512-nc72Wgq62I7rtDV4izT5/aaS0zxy3kttkinf9586ApknY3jZO9NYsmtc24fUckA0X7Q2v+ML4a15pdUlV5V/jA==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
@@ -690,9 +597,6 @@ packages:
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
-
-  tiny-emitter@2.1.0:
-    resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}
 
   tinyglobby@0.2.17:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
@@ -944,15 +848,9 @@ snapshots:
   '@esbuild/win32-x64@0.27.7':
     optional: true
 
-  '@handsontable/pikaday@1.0.0': {}
-
-  '@handsontable/react@15.2.0(handsontable@15.2.0)':
+  '@handsontable/react-wrapper@18.1.0(handsontable@18.1.0)':
     dependencies:
-      handsontable: 15.2.0
-
-  '@handsontable/react@16.2.0(handsontable@16.2.0)':
-    dependencies:
-      handsontable: 16.2.0
+      handsontable: 18.1.0
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -1081,9 +979,6 @@ snapshots:
     dependencies:
       csstype: 3.2.3
 
-  '@types/trusted-types@2.0.7':
-    optional: true
-
   '@vitejs/plugin-react@5.2.0(vite@7.3.5)':
     dependencies:
       '@babel/core': 7.29.7
@@ -1098,8 +993,6 @@ snapshots:
 
   baseline-browser-mapping@2.10.37: {}
 
-  bignumber.js@9.3.1: {}
-
   browserslist@4.28.2:
     dependencies:
       baseline-browser-mapping: 2.10.37
@@ -1110,24 +1003,13 @@ snapshots:
 
   caniuse-lite@1.0.30001799: {}
 
-  chevrotain@6.5.0:
-    dependencies:
-      regexp-to-ast: 0.4.0
-    optional: true
-
   convert-source-map@2.0.0: {}
-
-  core-js@3.49.0: {}
 
   csstype@3.2.3: {}
 
   debug@4.4.3:
     dependencies:
       ms: 2.1.3
-
-  dompurify@3.4.10:
-    optionalDependencies:
-      '@types/trusted-types': 2.0.7
 
   electron-to-chromium@1.5.372: {}
 
@@ -1171,31 +1053,7 @@ snapshots:
 
   gensync@1.0.0-beta.2: {}
 
-  handsontable@15.2.0:
-    dependencies:
-      '@handsontable/pikaday': 1.0.0
-      core-js: 3.49.0
-      dompurify: 3.4.10
-      moment: 2.30.1
-      numbro: 2.5.0
-    optionalDependencies:
-      hyperformula: 3.3.0
-
-  handsontable@16.2.0:
-    dependencies:
-      '@handsontable/pikaday': 1.0.0
-      core-js: 3.49.0
-      dompurify: 3.4.10
-      moment: 2.30.1
-      numbro: 2.5.0
-    optionalDependencies:
-      hyperformula: 3.3.0
-
-  hyperformula@3.3.0:
-    dependencies:
-      chevrotain: 6.5.0
-      tiny-emitter: 2.1.0
-    optional: true
+  handsontable@18.1.0: {}
 
   js-tokens@4.0.0: {}
 
@@ -1207,17 +1065,11 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  moment@2.30.1: {}
-
   ms@2.1.3: {}
 
   nanoid@3.3.12: {}
 
   node-releases@2.0.47: {}
-
-  numbro@2.5.0:
-    dependencies:
-      bignumber.js: 9.3.1
 
   picocolors@1.1.1: {}
 
@@ -1237,9 +1089,6 @@ snapshots:
   react-refresh@0.18.0: {}
 
   react@19.2.7: {}
-
-  regexp-to-ast@0.4.0:
-    optional: true
 
   rollup@4.62.0:
     dependencies:
@@ -1277,9 +1126,6 @@ snapshots:
   semver@6.3.1: {}
 
   source-map-js@1.2.1: {}
-
-  tiny-emitter@2.1.0:
-    optional: true
 
   tinyglobby@0.2.17:
     dependencies:
