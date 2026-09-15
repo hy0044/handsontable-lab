@@ -20,7 +20,10 @@ story's controls expose:
 - `repetitions`: choose how often the test alternates between Tab A and Tab B;
 - `inputDelay`: delay, in milliseconds, passed directly to each `userEvent.keyboard` call. It defaults to `0`; the test deliberately has no sleep or arbitrary wait.
 
-Each tab change keys the `HotTable` by the active tab. React therefore unmounts the old grid and creates a distinct Handsontable instance for the new tab.
+Both stories make Tab A read-only and Tab B editable. **Remounted Instance** keys the
+`HotTable` by the active tab, so React unmounts the old grid and creates a distinct
+Handsontable instance. **Reused Instance** keeps one `HotTable` mounted while updating
+its `data` and `readOnly` props on every tab change.
 
 ## Interaction test
 
@@ -31,7 +34,13 @@ await userEvent.keyboard('1', { delay: inputDelay });
 await userEvent.keyboard('{Enter}', { delay: inputDelay });
 ```
 
-Browser/test-runner output includes `document.activeElement`, the cell's `outerHTML` and `isConnected` state, whether the cell DOM is still identical after input, whether the instance ID changed, and every `beforeChange` changes array. In the failing case, inspect these logs for focus remaining on the tab button and a change shaped like `[row, column, "", ""]`.
+Browser/test-runner output immediately before and after the cell click includes
+`document.activeElement`, the cell's `isConnected` state, the cell meta's `readOnly`
+and `editor` values, the global `readOnly` setting, and the Handsontable instance ID.
+Every `beforeChange` changes array is logged with the same settings and meta diagnostics.
+In the failing case, inspect these logs for focus remaining on the tab button, a
+change shaped like `[row, column, "", ""]`, and whether `cellMetaReadOnly` was still
+`true` when editing was attempted.
 
 Build and run the Storybook 10 test headlessly in Chromium with the Vitest addon:
 
