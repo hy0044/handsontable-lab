@@ -6,11 +6,15 @@ This repository contains the original filter/data-update reproduction and a Stor
 
 ```bash
 pnpm install
+pnpm exec playwright install chromium
 pnpm dev
 pnpm storybook
 ```
 
-Open **Reproductions / Tabbed Handsontable focus race** in Storybook. Its controls expose:
+Open **Reproductions / Tabbed Handsontable focus race** in Storybook. Storybook 10's
+Test addon displays the play function and its interaction/test results in the **Tests**
+panel. Run the test from that panel, or enable automatic test execution there. The
+story's controls expose:
 
 - `rows` and `columns`: increase these to make creation of each grid more expensive;
 - `repetitions`: choose how often the test alternates between Tab A and Tab B;
@@ -29,7 +33,7 @@ await userEvent.keyboard('{Enter}', { delay: inputDelay });
 
 Browser/test-runner output includes `document.activeElement`, the cell's `outerHTML` and `isConnected` state, whether the cell DOM is still identical after input, whether the instance ID changed, and every `beforeChange` changes array. In the failing case, inspect these logs for focus remaining on the tab button and a change shaped like `[row, column, "", ""]`.
 
-Build and run the headless test against the static Storybook:
+Build and run the Storybook 10 test headlessly in Chromium with the Vitest addon:
 
 ```bash
 pnpm build
@@ -37,15 +41,17 @@ pnpm build-storybook
 pnpm test-storybook:ci
 ```
 
-To keep the static server running while experimenting with runner flags, use two shells:
+The headless test uses the same stories and play functions as the Storybook UI; it does
+not require a separately running static Storybook server. For an interactive Vitest run,
+use:
 
 ```bash
-pnpm exec http-server storybook-static --port 6006 --silent
-pnpm test-storybook -- --url http://127.0.0.1:6006 --shard=1/2
-pnpm test-storybook -- --url http://127.0.0.1:6006 --shard=2/2
+pnpm test-storybook
 ```
 
-The project currently has one story, so one of two shards can legitimately report no matching tests. `--shard` is passed through to the test runner rather than implemented by a custom wrapper.
+`vitest.config.ts` registers the Storybook test plugin and Playwright's Chromium
+browser provider. `.storybook/main.ts` registers `@storybook/addon-vitest`, which adds
+the Tests panel and connects its results to Storybook.
 
 ## Memory-constrained CI runs
 
