@@ -1,27 +1,66 @@
-# Handsontable v18 filter + data update repro
+# Handsontable 18.1.0 + React 19 focus race reproduction
 
-Minimal React reproduction for a Handsontable v18 crash when the `data` prop is replaced while a filter is active.
+This repository contains the original filter/data-update reproduction and a Storybook interaction test for a CI-only cell editing race. The dependency versions are intentionally pinned to Handsontable `18.1.0` and React `19.2.7`.
 
-## Run
+## Install and run
 
 ```bash
 pnpm install
 pnpm dev
+pnpm storybook
 ```
 
-## Reproduction
+Open **Reproductions / Tabbed Handsontable focus race** in Storybook. Its controls expose:
 
-1. Click **Apply filter (A / B)**.
-2. Click **Replace data**.
-3. Check the browser console and the grid state.
+- `rows` and `columns`: increase these to make creation of each grid more expensive;
+- `repetitions`: choose how often the test alternates between Tab A and Tab B;
+- `inputDelay`: delay, in milliseconds, passed directly to each `userEvent.keyboard` call. It defaults to `0`; the test deliberately has no sleep or arbitrary wait.
 
-The data replacement is done through React state, so the new array is passed back to `<HotTable data={data} />` as a prop. The replacement data contains no `A` or `B` values, so the active filter no longer matches any row.
+Each tab change keys the `HotTable` by the active tab. React therefore unmounts the old grid and creates a distinct Handsontable instance for the new tab.
 
-React `StrictMode` is intentionally enabled in `src/main.tsx` so the reproduction runs with development lifecycle checks enabled.
+## Interaction test
 
-Versions are intentionally fixed to:
+The play function repeatedly switches tabs, obtains the first rendered cell, clicks it, and immediately calls:
 
-- `handsontable@18.1.0`
-- `@handsontable/react-wrapper@18.1.0`
-- `react@19.2.7`
-- `react-dom@19.2.7`
+```ts
+await userEvent.keyboard('1', { delay: inputDelay });
+await userEvent.keyboard('{Enter}', { delay: inputDelay });
+```
+
+Browser/test-runner output includes `document.activeElement`, the cell's `outerHTML` and `isConnected` state, whether the cell DOM is still identical after input, whether the instance ID changed, and every `beforeChange` changes array. In the failing case, inspect these logs for focus remaining on the tab button and a change shaped like `[row, column, "", ""]`.
+
+Build and run the headless test against the static Storybook:
+
+```bash
+pnpm build
+pnpm build-storybook
+pnpm test-storybook:ci
+```
+
+To keep the static server running while experimenting with runner flags, use two shells:
+
+```bash
+pnpm exec http-server storybook-static --port 6006 --silent
+pnpm test-storybook -- --url http://127.0.0.1:6006 --shard=1/2
+pnpm test-storybook -- --url http://127.0.0.1:6006 --shard=2/2
+```
+
+The project currently has one story, so one of two shards can legitimately report no matching tests. `--shard` is passed through to the test runner rather than implemented by a custom wrapper.
+
+## Memory-constrained CI runs
+
+Set `NODE_OPTIONS` on both the Storybook build and test process to reproduce resource-constrained CI. Start with 512 MiB and then try 256 MiB:
+
+```bash
+NODE_OPTIONS=--max-old-space-size=512 pnpm build-storybook
+NODE_OPTIONS=--max-old-space-size=512 pnpm test-storybook:ci
+
+NODE_OPTIONS=--max-old-space-size=256 pnpm build-storybook
+NODE_OPTIONS=--max-old-space-size=256 pnpm test-storybook:ci
+```
+
+An out-of-memory exit at lower limits is a resource result, not evidence of the focus race. Keep `inputDelay=0` for the first reproduction attempts; only vary delay after recording the baseline.
+
+## Original filter reproduction
+
+Run `pnpm dev`, click **Apply filter (A / B)**, then **Replace data**, and inspect the browser console and grid. React `StrictMode` remains enabled in `src/main.tsx`.
