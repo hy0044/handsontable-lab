@@ -1,5 +1,5 @@
 {
-  "name": "handsontable-v18-filter-repro",
+  "name": "handsontable-v18-merge-cells-filter-repro",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@handsontable/react-wrapper": "18.1.0",
-    "handsontable": "18.1.0",
+    "@handsontable/react-wrapper": "18.1.1",
+    "handsontable": "18.1.1",
     "react": "19.2.7",
     "react-dom": "19.2.7"
   },
