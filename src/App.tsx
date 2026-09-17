@@ -1,4 +1,5 @@
-import { HotTable } from '@handsontable/react-wrapper';
+import { useRef } from 'react';
+import { HotTable, type HotTableRef } from '@handsontable/react-wrapper';
 import { registerAllModules } from 'handsontable/registry';
 import 'handsontable/styles/handsontable.css';
 import 'handsontable/styles/ht-theme-main.css';
@@ -14,15 +15,39 @@ const data = [
 ];
 
 export default function App() {
+  const hotRef = useRef<HotTableRef>(null);
+
+  const deselectAllFilterValues = () => {
+    const filters = hotRef.current?.hotInstance?.getPlugin('filters');
+
+    filters?.addCondition(0, 'by_value', [[]]);
+    filters?.filter();
+  };
+
+  const clearMergeCells = () => {
+    const hot = hotRef.current?.hotInstance;
+    if (!hot) return;
+
+    hot.updateSettings({ mergeCells: [] });
+  };
+
   return (
     <main>
       <h1>Handsontable v18 merge cells + filter repro</h1>
-      <p>
-        Open a column menu, change a filter, and check the console for an assertion error.
-      </p>
+      <p>Deselect all filter values, then clear mergeCells and check the console.</p>
+
+      <div className="controls">
+        <button type="button" onClick={deselectAllFilterValues}>
+          Deselect all filter values
+        </button>
+        <button type="button" onClick={clearMergeCells}>
+          Clear mergeCells
+        </button>
+      </div>
 
       <div className="ht-theme-main">
         <HotTable
+          ref={hotRef}
           data={data}
           filters
           dropdownMenu

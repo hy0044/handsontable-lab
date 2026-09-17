@@ -11,12 +11,14 @@ pnpm dev
 
 ## Reproduction
 
-1. Open a column dropdown menu.
-2. Select **Filter by value** (or another filter option) and change the filter.
-3. Click **OK** to apply it.
-4. Check the browser console and the grid state.
+1. Click **Deselect all filter values**.
+2. Confirm that no data rows are displayed.
+3. Click **Clear mergeCells**.
+4. Check the browser console for the assertion error.
 
-The first two cells in the **Region** column are merged. The table enables both the `mergeCells` and `filters` plugins, with `dropdownMenu` providing the filter UI. The issue under investigation may report an error similar to:
+The first button applies a `by_value` filter with no selected values, which is equivalent to opening the first column's filter dropdown and deselecting **Select all**. It intentionally does not clear the filter condition. The second button calls `hot.updateSettings({ mergeCells: [] })`.
+
+The first two cells in the **Region** column are merged. The table enables both the `mergeCells` and `filters` plugins. On Handsontable 18.1.1, the last step throws:
 
 ```text
 Assertion failed: Expecting an unsigned number.
