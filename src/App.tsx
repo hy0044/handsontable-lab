@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { HotTable, type HotTableRef } from '@handsontable/react-wrapper';
 import { registerAllModules } from 'handsontable/registry';
 import 'handsontable/styles/handsontable.css';
@@ -6,40 +6,42 @@ import 'handsontable/styles/ht-theme-main.css';
 
 registerAllModules();
 
-const initialData = [['A'], ['B'], ['C'], ['D'], ['E']];
-const updatedData = [['F'], ['G'], ['H']];
+const data = [
+  ['North', 'Q1', 120],
+  ['North', 'Q2', 95],
+  ['South', 'Q1', 80],
+  ['South', 'Q2', 110],
+  ['West', 'Q1', 70],
+];
 
 export default function App() {
   const hotRef = useRef<HotTableRef>(null);
-  const [data, setData] = useState(initialData);
 
-  const applyFilter = () => {
+  const deselectAllFilterValues = () => {
+    const filters = hotRef.current?.hotInstance?.getPlugin('filters');
+
+    filters?.addCondition(0, 'by_value', [[]]);
+    filters?.filter();
+  };
+
+  const clearMergeCells = () => {
     const hot = hotRef.current?.hotInstance;
     if (!hot) return;
 
-    const filters = hot.getPlugin('filters');
-    filters.clearConditions();
-    filters.addCondition(0, 'by_value', [['A', 'B']]);
-    filters.filter();
-  };
-
-  const replaceData = () => {
-    setData(updatedData.map((row) => [...row]));
+    hot.updateSettings({ mergeCells: [] });
   };
 
   return (
     <main>
-      <h1>Handsontable v18 filter + data update repro</h1>
-      <p>
-        1. Apply filter. 2. Replace data through React state. Check whether Handsontable crashes.
-      </p>
+      <h1>Handsontable v18 merge cells + filter repro</h1>
+      <p>Deselect all filter values, then clear mergeCells and check the console.</p>
 
       <div className="controls">
-        <button type="button" onClick={applyFilter}>
-          Apply filter (A / B)
+        <button type="button" onClick={deselectAllFilterValues}>
+          Deselect all filter values
         </button>
-        <button type="button" onClick={replaceData}>
-          Replace data
+        <button type="button" onClick={clearMergeCells}>
+          Clear mergeCells
         </button>
       </div>
 
@@ -49,9 +51,10 @@ export default function App() {
           data={data}
           filters
           dropdownMenu
+          mergeCells={[{ row: 0, col: 0, rowspan: 2, colspan: 1 }]}
           rowHeaders
-          colHeaders={['Value']}
-          width={360}
+          colHeaders={['Region', 'Quarter', 'Sales']}
+          width={520}
           height="auto"
           licenseKey="non-commercial-and-evaluation"
         />
